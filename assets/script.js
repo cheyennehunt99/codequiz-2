@@ -82,10 +82,11 @@ var questions = [
     new Question("What's 9+10?", ["21", "9","35", "19"], "21"),
     new Question("What is my favorite color?", ["Porpoise", "Turquoise", "Maroon", "Lavender"], "Maroon"),
     new Question("What is the seventh planet from the sun?", ["Jupiter", "Saturn", "Uranus", "Neptune"], "Uranus"),
-    new Question("", ["", "","", ""], ""),
-    new Question("", ["", "","", ""], ""),
-    new Question("", ["", "","", ""], ""),
-    new Question("", ["", "","", ""], ""),
+    new Question("What is the diameter of Earth?", ["12,000 miles", "6,000 miles","8,000 miles", "10,000 miles"], "8,000 miles"),
+    new Question("What year did the Cold War end?", ["1985", "1977","1989", "1975"], "1989"),
+    new Question("Which sea creature has three hearts?", ["Whale", "Octopus","Sting-Ray", "Seahorse"], "Octopus"),
+    new Question("What is one quarter of 1,000?", ["100", "250","75", "300"], "250"),
+    new Question("What is my all time favorite song by Fleetwood Mac?", ["Rhiannon", "Big Love","Dreams", "The Chain"], "Big Love"),
    
 ];
  
@@ -98,7 +99,7 @@ populate();
 function getTimeRemaining(endtime) {
     const total = Date.parse(endtime) - Date.parse(new Date());
     const seconds = Math.floor((total / 1000) % 60);
-    const minutes = Math.floor((total / 1000 / 60) % 5);
+    const minutes = Math.floor((total / 1000 / 60) % 2);
     
     return {
       total,
@@ -118,11 +119,10 @@ function getTimeRemaining(endtime) {
       minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
       secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
   
-      if (t.total <= 0) {
-        clearInterval(timeinterval);
+      if (t.total === 0) {
+        clearInterval(timeInterval);
       }
-    }
-  
+  }
     updateClock();
     const timeinterval = setInterval(updateClock, 1000);
   }
